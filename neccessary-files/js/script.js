@@ -43,7 +43,7 @@ const showPage = (list, page) => {
    };
 };
 
-showPage(data,1);
+
 
 
 
@@ -53,13 +53,33 @@ This function will create and insert/append the elements needed for the paginati
 */
 
 const addPagination = list => {
-
+   const numOfButtons = Math.ceil(list.length / 9);
+   const linkList = document.querySelector('.link-list');
+   linkList.innerHTML = '';
+   for (let i = 0; i < numOfButtons; i++) {
+      const showButton = `
+         <li>
+            <button type="button">${i + 1}</button>
+          </li>`;
+       linkList.insertAdjacentHTML('beforeend', showButton); 
+   };
+   const activeButton = document.querySelector('button[type="button"]');
+   activeButton.className = 'active';
+   linkList.addEventListener('click', (e) => {
+      if (e.target = activeButton) {
+         e.classList.remove('active');
+      }
+   });
 };
+
+
+
 
 
 // Call functions
 
-
+showPage(data,1);
+addPagination(data);
 
 
 
