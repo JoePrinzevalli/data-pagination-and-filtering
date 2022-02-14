@@ -65,15 +65,15 @@ const addPagination = list => {
    };
    const activeButton = document.querySelector('button[type="button"]');
    activeButton.className = 'active';
-   const pagButtons = document.querySelectorAll('button[type="button"]')
    linkList.addEventListener('click', (e) => {
-      if (e.target = pagButtons) {
-         pagButtons.classList.remove('active');
+      if (e.target.tagName /*=== 'button'*/) {
+         document.querySelector('.active').classList.remove('active');
          e.target.classList.add('active');
       }
-      // showPage(data,e.target)
+      
    });
 };
+
 
 
 
