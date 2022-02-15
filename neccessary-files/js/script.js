@@ -1,21 +1,10 @@
-/*
-Treehouse Techdegree: Data Pagination and Filtering
-*/
+
+// Script.js file contains both functions to dosplay 9 students per page and pagination buttons//
 
 
 
-/*
-For assistance:
-   Check out the "Project Resources" section of the Instructions tab
-   Reach out in your Slack community if you have questions
-*/
 
-
-
-/*
-Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
-*/
+// This function selects 9 students from the data.js file (using the items variable) and dynaimcally displays them in the browser // 
 
 const items = 9;
 
@@ -48,8 +37,7 @@ const showPage = (list, page) => {
 
 
 /*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
+This function dynaimcally inserts a number of pagination buttons located at the bottom of the browser. The number of pagination buttons is determined on how many studnets arte in the data.js file.The number of buttons will be the number of students divided by 9.
 */
 
 const addPagination = list => {
@@ -66,26 +54,55 @@ const addPagination = list => {
    const activeButton = document.querySelector('button[type="button"]');
    activeButton.className = 'active';
    linkList.addEventListener('click', (e) => {
-      if (e.target.tagName /*=== 'button'*/) {
+      if (e.target.tagName === 'BUTTON') {
          document.querySelector('.active').classList.remove('active');
          e.target.classList.add('active');
-      }
-      
+         let pageNum = e.target.textContent;
+         showPage(list, pageNum);
+      };
    });
+};
+
+// This function dynamically inserts a search bar into the browser, allowing the user to search for specifc students //
+
+const searchBar = (list) => {
+   const header = document.querySelector('header');
+   let searchButton = document.createElement('input');
+   searchButton = 
+      `<label for="search" class="student-search">
+      <span>Search by name</span>
+      <input id="search" placeholder="Search by name...">
+      <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+      </label>`
+    header.insertAdjacentHTML('beforeend', searchButton);
+
+   let searchInput = document.getElementById('search').value;
+   searchInput = searchInput.toLowerCase();
+   searchList = document.querySelector('.student-list')
+   for (let i = 0; i < list.length; i++) {
+      if(searchInput.value === list.textContent) {
+         searchList.style.display = searchInput.value
+      }
+      };
+   
+   
+   
+   // searchInput.addEventListener('click', (e) => {
+   //    if (e.target.tagName === 'INPUT') {
+   //       for (let i = 0; i < list.length; i++) {
+
+   //       };
+   //    };
+   // });
+
 };
 
 
 
 
 
-
-// Call functions
+// Calls all the functions written in this file.//
 
 showPage(data,1);
 addPagination(data);
-
-
-
-
-
-
+searchBar(data);

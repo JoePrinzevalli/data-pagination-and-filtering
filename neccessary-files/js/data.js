@@ -1,8 +1,6 @@
-/*
-Treehouse Techdegree: Data Pagination and Filtering
-*/
 
-// Array of student objects
+
+// This array conatins all the students displayed in the browser. Stuents can be added/removed from this array, which will affect the number of pagination butttons at the bottom of the browser.
 const data = [
   {
     name: {
