@@ -30,6 +30,27 @@ const showPage = (list, page) => {
        studentList.insertAdjacentHTML('beforeend', showStudent);
       };
    };
+
+   const header = document.querySelector('header');
+   let searchButton = document.createElement('input');
+   searchButton = 
+      `<label for="search" class="student-search">
+      <span>Search by name</span>
+      <input id="search" placeholder="Search by name...">
+      <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+      </label>`
+    header.insertAdjacentHTML('beforeend', searchButton);
+
+    let searchInput = document.getElementById('search').value;
+       searchInput = searchInput.toLowerCase();
+       for (let i = 0; i < list.length; i++) {
+          if(searchInput.value === list[i].name) {
+             studentSearch = document.createElement('li');
+             console.log('hi')
+          }
+         }
+
+
 };
 
 
@@ -65,37 +86,37 @@ const addPagination = list => {
 
 // This function dynamically inserts a search bar into the browser, allowing the user to search for specifc students //
 
-const searchBar = (list) => {
-   const header = document.querySelector('header');
-   let searchButton = document.createElement('input');
-   searchButton = 
-      `<label for="search" class="student-search">
-      <span>Search by name</span>
-      <input id="search" placeholder="Search by name...">
-      <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
-      </label>`
-    header.insertAdjacentHTML('beforeend', searchButton);
+// const searchBar = (list) => {
+//    const header = document.querySelector('header');
+//    let searchButton = document.createElement('input');
+//    searchButton = 
+//       `<label for="search" class="student-search">
+//       <span>Search by name</span>
+//       <input id="search" placeholder="Search by name...">
+//       <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+//       </label>`
+//     header.insertAdjacentHTML('beforeend', searchButton);
 
-   let searchInput = document.getElementById('search').value;
-   searchInput = searchInput.toLowerCase();
-   searchList = document.querySelector('.student-list')
-   for (let i = 0; i < list.length; i++) {
-      if(searchInput.value === list.textContent) {
-         searchList.style.display = searchInput.value
-      }
-      };
+//    let searchInput = document.getElementById('search').value;
+//    searchInput = searchInput.toLowerCase();
+//    for (let i = 0; i < list.length; i++) {
+//       if(searchInput.value) {
+//          studentSearch = document.createElement('li')
+
+//       }
+//       };
    
    
    
-   // searchInput.addEventListener('click', (e) => {
-   //    if (e.target.tagName === 'INPUT') {
-   //       for (let i = 0; i < list.length; i++) {
+//    // searchInput.addEventListener('click', (e) => {
+//    //    if (e.target.tagName === 'INPUT') {
+//    //       for (let i = 0; i < list.length; i++) {
 
-   //       };
-   //    };
-   // });
+//    //       };
+//    //    };
+//    // });
 
-};
+// }
 
 
 
@@ -105,4 +126,3 @@ const searchBar = (list) => {
 
 showPage(data,1);
 addPagination(data);
-searchBar(data);
