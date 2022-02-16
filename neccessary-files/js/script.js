@@ -14,7 +14,7 @@
     </label>`
   header.insertAdjacentHTML('beforeend', searchButton);
 
-// This function filters the user's input into the search abr and matches it with the characters from data.js //
+// This function filters the user's input into the search bar and matches it with the characters from data.js //
 const list = document.querySelector('.student-list');
 const handleSearch = (searchValue, studentList) => {
    let filteredNames = [];
@@ -23,15 +23,14 @@ const handleSearch = (searchValue, studentList) => {
        filteredNames.push(studentList[i]);
      } 
    };
-   if (list.childNodes.length <= 0) {
-      console.log('hi'); //this console to check the repitition
-      const div = document.querySelector('.pagination')
-      let para = document.createElement('p')
-      para.textContent = 'No Results Found';
-      div.appendChild(para)
-   };
    showPage(filteredNames,1);
    addPagination(filteredNames);
+
+   if (filteredNames.length === 0) {
+      list.innerHTML = '<li>No Results Found</li>';
+      let li = list.firstChild;
+      li.className = 'result'
+    }
  };
 
  // This event listener calls the handleSearch function //
@@ -50,7 +49,7 @@ const handleSearch = (searchValue, studentList) => {
 
 const items = 9;
 
-const showPage = (list, page, search) => {
+const showPage = (list, page,) => {
    const startIndex = (page * items) - items; 
    const endIndex = page * items;
    const studentList = document.querySelector('.student-list');
