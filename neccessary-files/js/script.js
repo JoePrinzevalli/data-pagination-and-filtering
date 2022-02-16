@@ -3,6 +3,48 @@
 
 
 
+ // formation of search button starts here //
+ const header = document.querySelector('header');
+ let searchButton = document.createElement('input');
+ searchButton = 
+    `<label for="search" class="student-search">
+    <span>Search by name</span>
+    <input id="search" placeholder="Search by name...">
+    <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+    </label>`
+  header.insertAdjacentHTML('beforeend', searchButton);
+
+// This function filters the user's input into the search abr and matches it with the characters from data.js //
+const list = document.querySelector('.student-list');
+const handleSearch = (searchValue, studentList) => {
+   let filteredNames = [];
+   for (let i = 0; i < studentList.length; i++) {
+     if (studentList[i].name.first.toLowerCase().includes(searchValue) || studentList[i].name.last.toLowerCase().includes(searchValue)) {
+       filteredNames.push(studentList[i]);
+     } 
+   };
+   if (list.childNodes.length <= 0) {
+      console.log('hi'); //this console to check the repitition
+      const div = document.querySelector('.pagination')
+      let para = document.createElement('p')
+      para.textContent = 'No Results Found';
+      div.appendChild(para)
+   };
+   showPage(filteredNames,1);
+   addPagination(filteredNames);
+ };
+
+ // This event listener calls the handleSearch function //
+ const searchInput = document.getElementById('search');
+ searchInput.addEventListener('keyup', (e) => {
+     const searchValue = e.target.value.toLowerCase();
+     handleSearch(searchValue, data);
+ });
+
+
+
+
+  
 
 // This function selects 9 students from the data.js file (using the items variable) and dynaimcally displays them in the browser // 
 
@@ -30,30 +72,6 @@ const showPage = (list, page, search) => {
        studentList.insertAdjacentHTML('beforeend', showStudent);
       };
    };
-
-   // formation of search button starts here //
-   const header = document.querySelector('header');
-   let searchButton = document.createElement('input');
-   searchButton = 
-      `<label for="search" class="student-search">
-      <span>Search by name</span>
-      <input id="search" placeholder="Search by name...">
-      <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
-      </label>`
-    header.insertAdjacentHTML('beforeend', searchButton);
-
-    const searchInput = document.getElementById('search');
-    searchInput.addEventListener('keyup', (e) => {
-      const searchValue = e.target.value.toLowerCase();
-      // put regular expresssion here? or does .toLowerCase() solve this //
-      for (let i = 0; i < list.length; i++) {
-         if(searchValue.includes(list[i].name)) {
-            console.log('this if condition works')
-            // create new list display here?? /
-            let searchList = document.createElement('li');
-         }
-      }
-    });
 };
 
 
@@ -88,48 +106,14 @@ const addPagination = list => {
 };
 
 
-// Calls all the functions written in this file.//
+// Calls the necessary functions //
 
 showPage(data,1,);
 addPagination(data);
 
 
 
-// Commented out code for search bar, will end up deleting before submitting project(may want to use some of these components) //
 
-// This function dynamically inserts a search bar into the browser, allowing the user to search for specifc students //
-
-// const searchBar = (list) => {
-//    const header = document.querySelector('header');
-//    let searchButton = document.createElement('input');
-//    searchButton = 
-//       `<label for="search" class="student-search">
-//       <span>Search by name</span>
-//       <input id="search" placeholder="Search by name...">
-//       <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
-//       </label>`
-//     header.insertAdjacentHTML('beforeend', searchButton);
-
-//    let searchInput = document.getElementById('search').value;
-//    searchInput = searchInput.toLowerCase();
-//    for (let i = 0; i < list.length; i++) {
-//       if(searchInput.value) {
-//          studentSearch = document.createElement('li')
-
-//       }
-//       };
-   
-   
-   
-//    // searchInput.addEventListener('click', (e) => {
-//    //    if (e.target.tagName === 'INPUT') {
-//    //       for (let i = 0; i < list.length; i++) {
-
-//    //       };
-//    //    };
-//    // });
-
-// }
 
 
 
