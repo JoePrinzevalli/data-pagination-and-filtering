@@ -23,13 +23,16 @@ const handleSearch = (searchValue, studentList) => {
        filteredNames.push(studentList[i]);
      } 
    };
-   showPage(filteredNames,1);
-   addPagination(filteredNames);
 
    if (filteredNames.length === 0) {
       list.innerHTML = '<li>No Results Found</li>';
       let li = list.firstChild;
-      li.className = 'result'
+      li.className = 'result';
+      document.querySelector('.link-list').style.display = 'none';
+    } else {
+      document.querySelector('.link-list').style.display = 'initial';
+      showPage(filteredNames,1);
+      addPagination(filteredNames);
     }
  };
 
