@@ -1,5 +1,5 @@
 
-// Script.js file contains both functions to dosplay 9 students per page and pagination buttons//
+// Script.js file contains both functions to display 9 students per page and pagination buttons//
 
 
 
@@ -41,10 +41,6 @@ const handleSearch = (searchValue, studentList) => {
  });
 
 
-
-
-  
-
 // This function selects 9 students from the data.js file (using the items variable) and dynaimcally displays them in the browser // 
 
 const items = 9;
@@ -73,17 +69,13 @@ const showPage = (list, page,) => {
    };
 };
 
-
-
-
-
 /*
 This function dynaimcally inserts a number of pagination buttons located at the bottom of the browser. The number of pagination buttons is determined on how many studnets arte in the data.js file.The number of buttons will be the number of students divided by 9.
 */
 
 const addPagination = list => {
    const numOfButtons = Math.ceil(list.length / 9);
-   const linkList = document.querySelector('.link-list');
+   const linkList = document.querySelector('.link-list')
    linkList.innerHTML = '';
    for (let i = 0; i < numOfButtons; i++) {
       const showButton = `
@@ -92,8 +84,12 @@ const addPagination = list => {
           </li>`;
        linkList.insertAdjacentHTML('beforeend', showButton); 
    };
-   const activeButton = document.querySelector('button[type="button"]');
-   activeButton.className = 'active';
+
+   // Code put in after project review//
+   const firstList = linkList.firstElementChild;
+   const firstButton = firstList.firstElementChild;
+   firstButton.classList.add('active');
+   
    linkList.addEventListener('click', (e) => {
       if (e.target.tagName === 'BUTTON') {
          document.querySelector('.active').classList.remove('active');
